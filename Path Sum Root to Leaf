@@ -1,0 +1,60 @@
+// Following is the Binary Tree node structure
+/**************
+class BinaryTreeNode {
+    public : 
+    T data;
+    BinaryTreeNode<T> *left;
+    BinaryTreeNode<T> *right;
+
+    BinaryTreeNode(T data) {
+        this -> data = data;
+        left = NULL;
+        right = NULL;
+    }
+};
+***************/
+
+void helper(BinaryTreeNode<int> *root, int k,int sum_node,vector<int> path) {
+    // Write your code here
+
+   
+   
+    if(root==NULL){return;}
+    
+    sum_node+=root->data;
+    path.push_back(root->data);
+    
+    if(k==sum_node){
+        for(int i=0;i<path.size();i++){
+            cout<<path[i]<<" ";
+        }
+        cout<<endl;
+        
+    }
+    if(root->left!=NULL){
+        helper(root->left,k,sum_node,path);
+    }
+    if(root->right!=NULL){
+        helper(root->right,k,sum_node,path);
+    }
+    
+    
+    
+    path.pop_back();
+}
+void rootToLeafPathsSumToK(BinaryTreeNode<int> *root, int k){
+    vector<int>path;
+    int sum_node;
+    helper(root,k,0,path);
+}
+
+
+
+
+*********Example************
+5 6 7 2 3 -1 1 -1 -1 -1 9 -1 -1 -1 -1
+13
+
+output:
+5 6 2
+5 7 1
